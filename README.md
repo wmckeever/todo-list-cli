@@ -4,13 +4,17 @@ In this project we'll be building a command line program that lets the user main
 
 ## Requirements
 
-* You must make at least three commits in git while working on this project (make a commit everytime you get a new thing working)
+85 points
 * The user is able to add new to-do items
 * A list of to-do items is displayed to the user
   * The number of to-do items is displayed to the user
   * If the user has no to-do items, this should be indicated to the user
-* The user is able to set existing to-do items as complete
 * Tell the user if they entered an invalid action
+
+15 Points
+* The user is able to display items as incomplete/complete
+* The user is able to set existing to-do items as complete
+
 
 ## An Example
 
