@@ -4,12 +4,12 @@ console.log("\n==============================================");
 console.log("Welcome to the To-Do List Manager Application!");
 console.log("==============================================\n");
 
-console.log("~ Select an action ~\n");
-console.log("[1] Create a to-do item");
-console.log("[2] Complete a to-do item");
-console.log("[3] Exit To-Do List Manager");
+// console.log("~ Select an action ~\n");
+// console.log("[1] Create a to-do item");
+// console.log("[2] Complete a to-do item");
+// console.log("[3] Exit To-Do List Manager");
 
-let option = Number(prompt("> "));
+let option = selectOption();
 let toDoList = [];
 let statusArray = [];
 
@@ -31,11 +31,10 @@ while(option !== 3){
 
   toDoList.push(addItem); // add item to end of array
   statusArray.push(false); // has to be a push to work with the array.
-
-  displayList(); // calls the displayList function below
-
-        // here is where we re-prompt the user
-  selectOption(); // run the selectOption function below
+  displayList(); 
+   
+  // here is where we re-prompt the user
+  option = selectOption(); // run the selectOption function 
 
   }else if(option === 2){
       
@@ -47,7 +46,6 @@ while(option !== 3){
     displayList();
 
     let newStatus = Number(prompt('> '));
-
     // check to make sure the input is a number or NaN
     // while newStatus is not a number 
     // also checks to make sure only 1-3 is selected
@@ -59,23 +57,21 @@ while(option !== 3){
     newStatus = Number(prompt('> ')); // copied from above but without the let to reprompt the user.
   }
    
-
     statusArray[newStatus -1] = true;
   
     } else{
-    console.log("To-Do List is currently empty. Please add items before trying to complete an item.");
+    console.log("Please add items to your To-Do List before trying to complete an item.");
       
     }
-
-
     // shows how many items are in your list
     displayList();
 
     // here is where we re-prompt the user
-    selectOption(); // run the selectOption function below
+    option = selectOption(); // call the selectOption() function below again
 
   }else {
     console.log("Invalid Operation!")
+    option = selectOption();
   }
 }
 
@@ -90,8 +86,8 @@ function selectOption(){
     console.log("[2] Complete a to-do item");
     console.log("[3] Exit To-Do List Manager");
     
-    option = Number(prompt("> "));
-    console.log("");
+    
+    return Number(prompt("> "));
 }
 
 // this prints out the number of items in the array. 
@@ -116,27 +112,24 @@ function displayList(){
       status = "[complete]"
     }
     
-    
-    
-    
     console.log(`${i+1}. ${status} ${toDoList[i]}`) 
     
     // above -->
     // a way account for numbers starting at 1 not 0 - i+1
     //toDoList[i]
     // takes the item add a 1 to the index # then prints out the current item in the array
+    
   }
 
 }
 
+// ## Stretch Goals
 
-
-
-
-
-
-
-
+// 1. Re-organize your code to make use of functions
+// 2. Allow the user to both complete and uncomplete to-do items
+// 3. Allow the user to fully delete a to-do item from the list
+// 4. Allow the user to edit the text of an existing to-do item
+// 5. Get creative! Add a new feature that you would find useful in a to-do list
 
 
 

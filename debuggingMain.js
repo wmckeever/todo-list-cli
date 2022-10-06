@@ -2,45 +2,40 @@ const prompt = require('prompt-sync')({sigint: true});
 
 console.log("\n==============================================");
 console.log("Welcome to the To-Do List Manager Application!");
-console.log("==============================================\n");
+console.log("==============================================");
 
-console.log("~ Select an action ~\n");
-console.log("[1] Create a to-do item");
-console.log("[2] Complete a to-do item");
-console.log("[3] Exit To-Do List Manager");
+//<------ Variable Declarations ------> //
 
-let option = Number(prompt("> "));
+let option = selectOption();
 let toDoList = [];
 let statusArray = [];
-
+const spinners = ['-', '\\', '|', '/'];
 
 while(option !== 3){
   if(option === 1){
     console.log("\n~ Creating a new to-do item ~\n")
     console.log("What is this to-do item called?\n")
         
-    // here is where we add the to do item
+    
     let addItem = prompt("> ");
 
-    // if input is empty re-prompt to enter something
+    
     while(addItem.length === 0){
       console.log("Invalid: Input can not be empty. Please try again.");
       addItem = prompt("> "); 
       
     }
 
-  toDoList.push(addItem); // add item to end of array
-  statusArray.push(false); // has to be a push to work with the array.
-
-  displayList(); // calls the displayList function below
-
-        // here is where we re-prompt the user
-  selectOption(); // run the selectOption function below
+  toDoList.push(addItem); 
+  statusArray.push(false); 
+  displayList(); 
+        
+  option = selectOption();
 
   }else if(option === 2){
       
-    // checks to make sure the list is NOT empty 
-    if(toDoList.length !== 0){ // this is true run the code below
+    
+    if(toDoList.length !== 0){ 
 
     console.log("~ Complete a to-do item ~")
     console.log("Which to-do item would you like to mark as complete?\n")
@@ -48,39 +43,30 @@ while(option !== 3){
 
     let newStatus = Number(prompt('> '));
 
-    // check to make sure the input is a number or NaN
-    // while newStatus is not a number 
-    // also checks to make sure only 1-3 is selected
-    // also prevents negative or invalid numbers
-    // || statement says IF ANY of these are true...
-
  while (isNaN(newStatus) || newStatus > statusArray.length || newStatus < 1){
     console.log("Please input a number that corresponds to an item number in the list: ");
-    newStatus = Number(prompt('> ')); // copied from above but without the let to reprompt the user.
+    newStatus = Number(prompt('> ')); 
   }
    
-
     statusArray[newStatus -1] = true;
+    // add deleteArray[newStatus-1]
   
     } else{
-    console.log("To-Do List is currently empty. Please add items before trying to complete an item.");
+    console.log("Please add items to your To-Do List before trying to complete an item.");
       
     }
 
-
-    // shows how many items are in your list
     displayList();
 
-    // here is where we re-prompt the user
-    selectOption(); // run the selectOption function below
+    option = selectOption(); 
 
   }else {
     console.log("Invalid Operation!")
+    option = selectOption();
   }
 }
 
-  console.log("Exiting the application...")
-
+  console.log("Exiting the application...");
 
 // -----------------> Functions <------------------- //
 
@@ -90,12 +76,11 @@ function selectOption(){
     console.log("[2] Complete a to-do item");
     console.log("[3] Exit To-Do List Manager");
     
-    option = Number(prompt("> "));
-    console.log("");
+    // option = Number(prompt("> "));
+    // console.log("");
+    return Number(prompt("> "));
 }
 
-// this prints out the number of items in the array. 
-//.length in this case shows the number of item in the list
 function displayList(){
   if(toDoList.length === 0){
     console.log("Your To-Do list is currently empty.");
@@ -106,8 +91,6 @@ function displayList(){
 
 
   for(i = 0; i < toDoList.length; i++){
-    
-    // sets the status for the item in the list
     let status = "";
 
     if(statusArray[i] === false){
@@ -116,27 +99,18 @@ function displayList(){
       status = "[complete]"
     }
     
-    
-    
-    
     console.log(`${i+1}. ${status} ${toDoList[i]}`) 
-    
-    // above -->
-    // a way account for numbers starting at 1 not 0 - i+1
-    //toDoList[i]
-    // takes the item add a 1 to the index # then prints out the current item in the array
   }
-
 }
 
 
+// ## Stretch Goals
 
-
-
-
-
-
-
+// 1. Re-organize your code to make use of functions
+// 2. Allow the user to both complete and uncomplete to-do items
+// 3. Allow the user to fully delete a to-do item from the list
+// 4. Allow the user to edit the text of an existing to-do item
+// 5. Get creative! Add a new feature that you would find useful in a to-do list
 
 
 
