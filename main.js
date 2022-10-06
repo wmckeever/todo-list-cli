@@ -9,11 +9,11 @@ console.log("==============================================\n");
 // console.log("[2] Complete a to-do item");
 // console.log("[3] Exit To-Do List Manager");
 
-let option = selectOption();
+let option = selectOption(); // changed to call the function istead of repeating the above code. Also, made option a globa variable. 
 let toDoList = [];
 let statusArray = [];
 
-
+// if the option chosen is not 3
 while(option !== 3){
   if(option === 1){
     console.log("\n~ Creating a new to-do item ~\n")
@@ -52,6 +52,8 @@ while(option !== 3){
     // also prevents negative or invalid numbers
     // || statement says IF ANY of these are true...
 
+
+    //this while loops makes sure that we are entering a valid number and not a string or negative number
  while (isNaN(newStatus) || newStatus > statusArray.length || newStatus < 1){
     console.log("Please input a number that corresponds to an item number in the list: ");
     newStatus = Number(prompt('> ')); // copied from above but without the let to reprompt the user.
@@ -74,19 +76,20 @@ while(option !== 3){
     option = selectOption();
   }
 }
-
+// if choice [3] or exit is chosen then display the following console.log()
   console.log("Exiting the application...")
 
 
 // -----------------> Functions <------------------- //
 
+// this function displays the choices whenever it is called. 
 function selectOption(){
     console.log("\n~ Select an action ~\n");
     console.log("[1] Create a to-do item");
     console.log("[2] Complete a to-do item");
     console.log("[3] Exit To-Do List Manager");
     
-    
+    // by using a return here we are able to keep the prompt local and not change the option variable above
     return Number(prompt("> "));
 }
 
@@ -118,7 +121,7 @@ function displayList(){
     // a way account for numbers starting at 1 not 0 - i+1
     //toDoList[i]
     // takes the item add a 1 to the index # then prints out the current item in the array
-    
+
   }
 
 }
